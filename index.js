@@ -216,5 +216,28 @@ app.post('/login', (req, res) => {
             })
         })
     
+//abdulmoiz
+app.get("/status", (req, res) => {
+  mysqlConnection.query(
+    "Select BloodrequestId, BloodTag, Location, Donorcount from request where status ='Incomplete'",
+    [req.params.code],
+    (err, rows, fields) => {
+      if (!err) res.send(rows);
+      else console.log(err);
+    }
+  );
+});
+
+app.get("/hospitals", (req, res) => {
+  mysqlConnection.query(
+    "Select * from hospitals",
+    [req.params.code],
+    (err, rows, fields) => {
+      if (!err) res.send(rows);
+      else console.log(err);
+    }
+  );
+});
+
     
   
